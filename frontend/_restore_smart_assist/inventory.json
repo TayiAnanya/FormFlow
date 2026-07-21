@@ -1,0 +1,375 @@
+{
+  "cutoff": 542,
+  "files": [
+    {
+      "path": "angular.json",
+      "bytes": 2569,
+      "writes": 0,
+      "ops": 2,
+      "last_op": "L539 StrReplace_FAIL",
+      "deleted_later": false
+    },
+    {
+      "path": "proxy.conf.json",
+      "bytes": 208,
+      "writes": 1,
+      "ops": 1,
+      "last_op": "L539 Write",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/app.config.ts",
+      "bytes": 869,
+      "writes": 2,
+      "ops": 4,
+      "last_op": "L514 Write",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/demo/form-host/form-host.css",
+      "bytes": 1174,
+      "writes": 4,
+      "ops": 4,
+      "last_op": "L374 Write",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/demo/form-host/form-host.html",
+      "bytes": 6019,
+      "writes": 3,
+      "ops": 18,
+      "last_op": "L502 StrReplace_OK",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/demo/form-host/form-host.ts",
+      "bytes": 3161,
+      "writes": 2,
+      "ops": 9,
+      "last_op": "L502 StrReplace_OK",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.css",
+      "bytes": 8327,
+      "writes": 3,
+      "ops": 21,
+      "last_op": "L379 StrReplace_OK",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.html",
+      "bytes": 9438,
+      "writes": 4,
+      "ops": 25,
+      "last_op": "L374 StrReplace_OK",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.smart-assist.spec.ts",
+      "bytes": 3640,
+      "writes": 1,
+      "ops": 2,
+      "last_op": "L460 StrReplace_OK",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.spec.ts",
+      "bytes": 8990,
+      "writes": 1,
+      "ops": 13,
+      "last_op": "L413 StrReplace_OK",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.ts",
+      "bytes": 6425,
+      "writes": 1,
+      "ops": 50,
+      "last_op": "L455 StrReplace_FAIL",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/smart-assist/components/document-upload/document-upload.component.css",
+      "bytes": 212,
+      "writes": 1,
+      "ops": 1,
+      "last_op": "L454 Write",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/smart-assist/components/document-upload/document-upload.component.html",
+      "bytes": 347,
+      "writes": 1,
+      "ops": 2,
+      "last_op": "L484 StrReplace_OK",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/smart-assist/components/document-upload/document-upload.component.ts",
+      "bytes": 908,
+      "writes": 1,
+      "ops": 1,
+      "last_op": "L454 Write",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/smart-assist/components/smart-assist-panel/smart-assist-panel.css",
+      "bytes": 2156,
+      "writes": 1,
+      "ops": 1,
+      "last_op": "L454 Write",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/smart-assist/components/smart-assist-panel/smart-assist-panel.html",
+      "bytes": 2002,
+      "writes": 1,
+      "ops": 3,
+      "last_op": "L501 StrReplace_OK",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/smart-assist/components/smart-assist-panel/smart-assist-panel.spec.ts",
+      "bytes": 6071,
+      "writes": 3,
+      "ops": 14,
+      "last_op": "L526 StrReplace_OK",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/smart-assist/components/smart-assist-panel/smart-assist-panel.ts",
+      "bytes": 5848,
+      "writes": 2,
+      "ops": 9,
+      "last_op": "L539 StrReplace_OK",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/smart-assist/index.ts",
+      "bytes": 684,
+      "writes": 2,
+      "ops": 6,
+      "last_op": "L526 StrReplace_OK",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/smart-assist/models/document-extraction.model.ts",
+      "bytes": 825,
+      "writes": 1,
+      "ops": 2,
+      "last_op": "L484 StrReplace_OK",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/smart-assist/services/ai-extraction.service.spec.ts",
+      "bytes": 4592,
+      "writes": 2,
+      "ops": 2,
+      "last_op": "L526 Write",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/smart-assist/services/ai-extraction.service.ts",
+      "bytes": 2837,
+      "writes": 2,
+      "ops": 2,
+      "last_op": "L524 Write",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/smart-assist/services/ai-extraction.types.spec.ts",
+      "bytes": 1597,
+      "writes": 1,
+      "ops": 2,
+      "last_op": "L526 StrReplace_OK",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/smart-assist/services/ai-extraction.types.ts",
+      "bytes": 4154,
+      "writes": 2,
+      "ops": 2,
+      "last_op": "L524 Write",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/smart-assist/services/document-extraction.service.spec.ts",
+      "bytes": 2271,
+      "writes": 4,
+      "ops": 5,
+      "last_op": "L516 Write",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/smart-assist/services/document-extraction.service.ts",
+      "bytes": 1441,
+      "writes": 6,
+      "ops": 6,
+      "last_op": "L515 Write",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/smart-assist/services/document-parser.service.ts",
+      "bytes": 294,
+      "writes": 2,
+      "ops": 2,
+      "last_op": "L515 Write",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/smart-assist/services/field-mapping.service.spec.ts",
+      "bytes": 3480,
+      "writes": 2,
+      "ops": 3,
+      "last_op": "L490 Write",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/smart-assist/services/field-mapping.service.ts",
+      "bytes": 3702,
+      "writes": 4,
+      "ops": 5,
+      "last_op": "L539 Write",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/smart-assist/services/gemini-language-model.provider.ts",
+      "bytes": 3868,
+      "writes": 3,
+      "ops": 3,
+      "last_op": "L533 Write",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/smart-assist/testing/pdf-test.helpers.ts",
+      "bytes": 1930,
+      "writes": 2,
+      "ops": 4,
+      "last_op": "L473 StrReplace_OK",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/smart-assist/utils/document-field.parser.spec.ts",
+      "bytes": 2883,
+      "writes": 2,
+      "ops": 3,
+      "last_op": "L493 StrReplace_OK",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/smart-assist/utils/document-field.parser.ts",
+      "bytes": 5452,
+      "writes": 2,
+      "ops": 2,
+      "last_op": "L489 Write",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/smart-assist/utils/document-pii.mask.spec.ts",
+      "bytes": 1862,
+      "writes": 1,
+      "ops": 1,
+      "last_op": "L526 Write",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/smart-assist/utils/document-pii.mask.ts",
+      "bytes": 4627,
+      "writes": 1,
+      "ops": 1,
+      "last_op": "L524 Write",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/smart-assist/utils/document-text.reader.spec.ts",
+      "bytes": 1193,
+      "writes": 2,
+      "ops": 2,
+      "last_op": "L476 Write",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/smart-assist/utils/document-text.reader.ts",
+      "bytes": 4395,
+      "writes": 3,
+      "ops": 5,
+      "last_op": "L484 Write",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/smart-assist/utils/form-patch.util.spec.ts",
+      "bytes": 4073,
+      "writes": 1,
+      "ops": 1,
+      "last_op": "L451 Write",
+      "deleted_later": false
+    },
+    {
+      "path": "src/app/features/smart-assist/utils/form-patch.util.ts",
+      "bytes": 3078,
+      "writes": 1,
+      "ops": 1,
+      "last_op": "L452 Write",
+      "deleted_later": false
+    },
+    {
+      "path": "src/environments/environment.development.ts",
+      "bytes": 319,
+      "writes": 1,
+      "ops": 3,
+      "last_op": "L539 StrReplace_FAIL",
+      "deleted_later": false
+    },
+    {
+      "path": "src/environments/environment.example.ts",
+      "bytes": 415,
+      "writes": 1,
+      "ops": 2,
+      "last_op": "L533 StrReplace_OK",
+      "deleted_later": false
+    },
+    {
+      "path": "src/environments/environment.ts",
+      "bytes": 516,
+      "writes": 1,
+      "ops": 2,
+      "last_op": "L533 StrReplace_OK",
+      "deleted_later": false
+    }
+  ],
+  "strreplace_failures": [
+    "L192: old_string not found in src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.ts",
+    "L215: old_string not found in src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.ts",
+    "L215: old_string not found in src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.ts",
+    "L215: old_string not found in src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.ts",
+    "L215: old_string not found in src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.ts",
+    "L216: old_string not found in src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.ts",
+    "L216: old_string not found in src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.ts",
+    "L216: old_string not found in src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.ts",
+    "L216: old_string not found in src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.html",
+    "L216: old_string not found in src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.css",
+    "L217: old_string not found in src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.html",
+    "L226: old_string not found in src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.ts",
+    "L226: old_string not found in src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.ts",
+    "L227: old_string not found in src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.ts",
+    "L236: old_string not found in src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.ts",
+    "L237: old_string not found in src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.ts",
+    "L274: old_string not found in src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.css",
+    "L287: old_string not found in src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.ts",
+    "L287: old_string not found in src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.ts",
+    "L287: old_string not found in src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.ts",
+    "L288: old_string not found in src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.ts",
+    "L318: old_string not found in src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.ts",
+    "L322: old_string not found in src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.ts",
+    "L378: old_string not found in src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.css",
+    "L408: old_string not found in src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.ts",
+    "L408: old_string not found in src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.ts",
+    "L455: old_string not found in src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.ts",
+    "L455: old_string not found in src/app/features/renderer/dynamic-form-renderer/dynamic-form-renderer.ts",
+    "L513: old_string not found in angular.json",
+    "L533: old_string not found in src/environments/environment.development.ts",
+    "L539: old_string not found in angular.json",
+    "L539: old_string not found in src/environments/environment.development.ts"
+  ]
+}

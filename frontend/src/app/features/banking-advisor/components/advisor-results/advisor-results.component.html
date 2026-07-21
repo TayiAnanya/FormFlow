@@ -1,0 +1,61 @@
+<section class="advisor-results" aria-label="Personalized banking recommendations">
+  <div class="results-grid">
+    <article class="insight-card insight-card-wide">
+      <h3 class="insight-title">Financial Goals</h3>
+      <ul class="goal-chips">
+        @for (goal of advice.financialGoals; track goal) {
+          <li>{{ goal }}</li>
+        }
+      </ul>
+    </article>
+
+    <article class="insight-card insight-card-score">
+      <h3 class="insight-title">Financial Health Score</h3>
+      <app-financial-health-score [score]="advice.financialHealthScore" />
+    </article>
+
+    <article class="insight-card">
+      <h3 class="insight-title">Risk Category</h3>
+      <p class="insight-value">{{ advice.riskCategory }}</p>
+    </article>
+
+    <article class="insight-card">
+      <h3 class="insight-title">Monthly Savings</h3>
+      <p class="insight-value">{{ formatCurrency(advice.monthlySavingsRecommendation) }}</p>
+    </article>
+
+    <article class="insight-card">
+      <h3 class="insight-title">Loan Eligibility</h3>
+      <p class="insight-value">{{ formatCurrency(advice.estimatedLoanEligibility) }}</p>
+    </article>
+
+    <article class="insight-card">
+      <h3 class="insight-title">Recommended EMI</h3>
+      <p class="insight-value">{{ formatCurrency(advice.estimatedEMI) }}</p>
+    </article>
+
+    <article class="insight-card insight-card-wide">
+      <h3 class="insight-title">Personalized Advice</h3>
+      <p class="insight-advice">{{ advice.advice }}</p>
+      @if (advice.investmentPlan) {
+        <p class="insight-investment">
+          <strong>Investment plan:</strong> {{ advice.investmentPlan }}
+        </p>
+      }
+    </article>
+  </div>
+
+  <div class="results-section">
+    <h3 class="section-heading">Recommended Banking Products</h3>
+    <div class="product-grid">
+      @for (product of productCards; track product.id) {
+        <app-advisor-product-card [product]="product" (apply)="onProductApply($event)" />
+      }
+    </div>
+  </div>
+
+  <div class="results-section">
+    <h3 class="section-heading">12-Month Financial Roadmap</h3>
+    <app-advisor-roadmap [steps]="advice.roadmap" />
+  </div>
+</section>

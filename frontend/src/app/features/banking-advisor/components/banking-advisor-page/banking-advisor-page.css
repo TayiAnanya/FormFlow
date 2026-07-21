@@ -1,0 +1,176 @@
+:host {
+  display: block;
+}
+
+.advisor-hero {
+  margin-bottom: 1.75rem;
+  padding: 1.7rem 1.55rem 1.75rem;
+  border-radius: 1.5rem;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(232, 239, 237, 0.7)),
+    radial-gradient(600px 220px at 100% 0%, rgba(232, 168, 124, 0.2), transparent 60%);
+  border: 1px solid rgba(61, 139, 122, 0.14);
+  box-shadow: 0 18px 44px rgba(15, 28, 26, 0.06);
+  backdrop-filter: blur(14px);
+}
+
+.advisor-eyebrow {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #2a6b5e;
+}
+
+.advisor-title {
+  margin: 0.45rem 0 0;
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(1.9rem, 3vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  color: #0f1c1a;
+}
+
+.advisor-welcome {
+  margin: 0.8rem 0 0;
+  max-width: 42rem;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: rgba(15, 28, 26, 0.7);
+}
+
+.advisor-chat {
+  padding: 1.35rem 1.4rem 1.45rem;
+  border-radius: 1.4rem;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(61, 139, 122, 0.14);
+  box-shadow: 0 16px 40px rgba(15, 28, 26, 0.05);
+  backdrop-filter: blur(12px);
+}
+
+.advisor-input-label {
+  display: block;
+  margin-bottom: 0.55rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #2a6b5e;
+}
+
+.advisor-textarea {
+  width: 100%;
+  min-height: 7.5rem;
+  resize: vertical;
+}
+
+.advisor-chat-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.9rem;
+}
+
+.advisor-suggestions {
+  margin-top: 1.2rem;
+}
+
+.advisor-suggestions-label {
+  margin: 0 0 0.55rem;
+  font-size: 0.8rem;
+  font-weight: 650;
+  color: rgba(15, 28, 26, 0.58);
+}
+
+.advisor-suggestion-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.advisor-suggestion {
+  border: 1px solid rgba(61, 139, 122, 0.22);
+  background: rgba(61, 139, 122, 0.08);
+  color: #2a6b5e;
+  border-radius: 9999px;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 650;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.advisor-suggestion:hover:not(:disabled) {
+  background: rgba(232, 168, 124, 0.16);
+  border-color: rgba(232, 168, 124, 0.4);
+  color: #b56b4e;
+  transform: translateY(-1px);
+}
+
+.advisor-suggestion:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.advisor-user-bubble {
+  margin-top: 1.25rem;
+  padding: 1.05rem 1.15rem;
+  border-radius: 1.2rem;
+  background: rgba(61, 139, 122, 0.1);
+  border: 1px solid rgba(61, 139, 122, 0.16);
+  animation: formflow-fade-up 0.35s ease both;
+}
+
+.advisor-user-label {
+  margin: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #2a6b5e;
+}
+
+.advisor-user-text {
+  margin: 0.4rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #0f1c1a;
+}
+
+.advisor-loading {
+  margin-top: 1.5rem;
+  padding: 1.2rem 1.3rem;
+  border-radius: 1.2rem;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(61, 139, 122, 0.14);
+}
+
+.advisor-loading-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.advisor-loading-steps li {
+  font-size: 0.9rem;
+  font-weight: 650;
+  color: rgba(15, 28, 26, 0.3);
+  transition: color 0.25s ease;
+}
+
+.advisor-loading-active {
+  color: #2a6b5e !important;
+}
+
+:host ::ng-deep .form-host-back-btn {
+  font-weight: 650 !important;
+  color: #2a6b5e !important;
+}
+
+.advisor-results-wrap {
+  animation: formflow-fade-up 0.45s ease both;
+}

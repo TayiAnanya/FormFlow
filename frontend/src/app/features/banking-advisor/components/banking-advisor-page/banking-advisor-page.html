@@ -1,0 +1,106 @@
+<section class="advisor-page mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+  <div class="mb-6">
+    <p-button
+      label="Back to Dashboard"
+      icon="pi pi-arrow-left"
+      severity="secondary"
+      [text]="true"
+      styleClass="form-host-back-btn"
+      routerLink="/dashboard"
+    />
+  </div>
+
+  <header class="advisor-hero">
+    <p class="advisor-eyebrow">Relationship Manager</p>
+    <h1 class="advisor-title">Smart Banking Advisor</h1>
+    <p class="advisor-welcome">
+      Welcome. Tell me about your financial goals in your own words — income, savings plans,
+      upcoming purchases, or life events — and I will recommend suitable banking products with a
+      personalized roadmap.
+    </p>
+  </header>
+
+  <section class="advisor-chat" aria-label="Advisor conversation">
+    <label class="advisor-input-label" for="advisor-message">Describe your financial goals</label>
+    <textarea
+      id="advisor-message"
+      pTextarea
+      rows="5"
+      class="advisor-textarea w-full"
+      [(ngModel)]="draftMessage"
+      placeholder="Example: I recently started a new job with a salary of ₹80,000 per month. I want to buy a car next year, save for travel, and invest every month."
+      [disabled]="phase === 'loading'"
+    ></textarea>
+
+    <div class="advisor-chat-actions">
+      <p-button
+        label="Send"
+        icon="pi pi-send"
+        styleClass="formflow-btn"
+        [disabled]="!draftMessage.trim() || phase === 'loading'"
+        (onClick)="submit()"
+      />
+      @if (phase === 'results' || phase === 'error') {
+        <p-button
+          label="Start over"
+          icon="pi pi-refresh"
+          severity="secondary"
+          [outlined]="true"
+          styleClass="formflow-btn"
+          (onClick)="resetConversation()"
+        />
+      }
+    </div>
+
+    <div class="advisor-suggestions">
+      <p class="advisor-suggestions-label">Suggested prompts</p>
+      <div class="advisor-suggestion-list">
+        @for (prompt of suggestedPrompts; track prompt) {
+          <button
+            type="button"
+            class="advisor-suggestion"
+            [disabled]="phase === 'loading'"
+            (click)="useSuggestion(prompt)"
+          >
+            {{ prompt }}
+          </button>
+        }
+      </div>
+    </div>
+  </section>
+
+  @if (submittedMessage && phase !== 'idle') {
+    <div class="advisor-user-bubble" aria-label="Your message">
+      <p class="advisor-user-label">You</p>
+      <p class="advisor-user-text">{{ submittedMessage }}</p>
+    </div>
+  }
+
+  @if (phase === 'loading') {
+    <div class="advisor-loading" role="status" aria-live="polite">
+      <ol class="advisor-loading-steps">
+        @for (step of loadingSteps; track step; let index = $index) {
+          <li [class.advisor-loading-active]="index <= loadingStepIndex">
+            {{ step }}
+          </li>
+        }
+      </ol>
+    </div>
+  }
+
+  @if (phase === 'error' && errorMessage) {
+    <p-message severity="warn" styleClass="w-full mt-6">
+      {{ errorMessage }}
+    </p-message>
+  }
+
+  @if (phase === 'results' && advice) {
+    <div class="advisor-results-wrap mt-8">
+      <app-advisor-results
+        [advice]="advice"
+        [productCards]="productCards"
+        (productApply)="onProductApply($event)"
+      />
+    </div>
+  }
+</section>

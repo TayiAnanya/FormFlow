@@ -1,0 +1,315 @@
+<div class="lp">
+  <!-- 1. Navigation -->
+  <header class="lp-nav">
+    <div class="lp-nav-inner">
+      <a class="lp-brand" routerLink="/" aria-label="FormFlow home">
+        <span class="lp-brand-mark" aria-hidden="true"><i class="pi pi-building"></i></span>
+        <span class="lp-brand-text">
+          <span class="lp-brand-name">FormFlow</span>
+          <span class="lp-brand-tag">Digital banking</span>
+        </span>
+      </a>
+      <nav class="lp-nav-actions" aria-label="Account">
+        <a class="lp-nav-login" routerLink="/login">Login</a>
+        <a class="lp-nav-register" routerLink="/register">Register</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- 2. Hero -->
+    <section class="lp-hero" aria-labelledby="lp-hero-title">
+      <div class="lp-hero-inner">
+        <div class="lp-hero-copy">
+          <p class="lp-kicker">Enterprise digital banking</p>
+          <h1 id="lp-hero-title" class="lp-hero-title">
+            Open accounts, borrow, and get AI guidance — in one secure portal.
+          </h1>
+          <p class="lp-hero-lede">
+            FormFlow is a premium banking workspace for schema-driven applications, voice fraud
+            reporting, and conversational product advice. Sign in once. Continue into the module
+            you need.
+          </p>
+          <div class="lp-hero-cta">
+            <a class="lp-btn lp-btn-primary" routerLink="/register">
+              Open an account
+              <i class="pi pi-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a class="lp-btn lp-btn-secondary" routerLink="/login">
+              Login to workspace
+            </a>
+          </div>
+          <ul class="lp-hero-trust" aria-label="Platform highlights">
+            <li><i class="pi pi-shield" aria-hidden="true"></i> Auth-gated portal</li>
+            <li><i class="pi pi-bolt" aria-hidden="true"></i> AI inside every journey</li>
+            <li><i class="pi pi-mobile" aria-hidden="true"></i> Desktop &amp; mobile ready</li>
+          </ul>
+        </div>
+
+        <!-- Premium abstract glass leaf — hero artwork only -->
+        <aside class="lp-hero-art" aria-hidden="true">
+          <div class="lp-glass-leaf">
+            <div class="lp-glass-leaf-shadow"></div>
+            <svg
+              class="lp-glass-leaf-svg"
+              viewBox="0 0 420 480"
+              xmlns="http://www.w3.org/2000/svg"
+              focusable="false"
+            >
+              <defs>
+                <linearGradient id="lpLeafBody" x1="18%" y1="8%" x2="86%" y2="92%">
+                  <stop offset="0%" stop-color="#f7f3ec" stop-opacity="0.72" />
+                  <stop offset="38%" stop-color="#c5d6cd" stop-opacity="0.55" />
+                  <stop offset="72%" stop-color="#9bb5a8" stop-opacity="0.48" />
+                  <stop offset="100%" stop-color="#e8c4b0" stop-opacity="0.28" />
+                </linearGradient>
+                <linearGradient id="lpLeafSheen" x1="20%" y1="0%" x2="70%" y2="80%">
+                  <stop offset="0%" stop-color="#fffaf3" stop-opacity="0.7" />
+                  <stop offset="45%" stop-color="#ffffff" stop-opacity="0.12" />
+                  <stop offset="100%" stop-color="#d4a890" stop-opacity="0.18" />
+                </linearGradient>
+                <linearGradient id="lpLeafEdge" x1="0%" y1="50%" x2="100%" y2="50%">
+                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0.55" />
+                  <stop offset="100%" stop-color="#b7c9bf" stop-opacity="0.2" />
+                </linearGradient>
+                <radialGradient id="lpLeafGlow" cx="42%" cy="36%" r="55%">
+                  <stop offset="0%" stop-color="#f5f0e6" stop-opacity="0.55" />
+                  <stop offset="55%" stop-color="#a8bfb2" stop-opacity="0.18" />
+                  <stop offset="100%" stop-color="#c9a090" stop-opacity="0" />
+                </radialGradient>
+                <filter id="lpLeafFrost" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur in="SourceGraphic" stdDeviation="0.8" result="soft" />
+                  <feBlend in="SourceGraphic" in2="soft" mode="normal" />
+                </filter>
+              </defs>
+
+              <!-- Soft ambient bloom behind the leaf -->
+              <ellipse cx="210" cy="250" rx="150" ry="180" fill="url(#lpLeafGlow)" opacity="0.85" />
+
+              <!-- Organic glass leaf body -->
+              <path
+                class="lp-glass-leaf-body"
+                filter="url(#lpLeafFrost)"
+                fill="url(#lpLeafBody)"
+                stroke="url(#lpLeafEdge)"
+                stroke-width="1.25"
+                d="M210 36
+                   C268 78 318 128 342 188
+                   C368 252 352 318 318 372
+                   C286 422 246 452 210 462
+                   C174 452 134 422 102 372
+                   C68 318 52 252 78 188
+                   C102 128 152 78 210 36 Z"
+              />
+
+              <!-- Inner glass reflection -->
+              <path
+                fill="url(#lpLeafSheen)"
+                opacity="0.85"
+                d="M210 72
+                   C248 108 278 148 292 192
+                   C308 244 298 292 272 334
+                   C252 366 230 388 210 398
+                   C210 320 210 220 210 72 Z"
+              />
+
+              <!-- Cream highlight ridge -->
+              <path
+                fill="none"
+                stroke="#fff8ef"
+                stroke-opacity="0.45"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                d="M210 88 C210 180 210 280 210 400"
+              />
+
+              <!-- Subtle terracotta caustic -->
+              <path
+                fill="#e2b49a"
+                fill-opacity="0.14"
+                d="M248 300
+                   C278 330 286 368 268 398
+                   C248 420 228 428 210 432
+                   C210 390 228 348 248 300 Z"
+              />
+            </svg>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 3. Banking Services -->
+    <section id="services" class="lp-section lp-services" aria-labelledby="lp-services-title">
+      <div class="lp-section-inner">
+        <header class="lp-section-head">
+          <p class="lp-kicker">Banking services</p>
+          <h2 id="lp-services-title" class="lp-section-title">
+            Every module you need — ready after sign-in
+          </h2>
+          <p class="lp-section-lede">
+            Cards are generated from the live portal catalog. Choose a service to continue; guests
+            are redirected to Login, then returned to the requested module.
+          </p>
+        </header>
+
+        <div class="lp-service-grid">
+          @for (service of bankingServices; track service.id) {
+            <a
+              class="lp-service-card"
+              [routerLink]="service.routerLink"
+              [attr.aria-label]="'Open ' + service.title + ' (sign in required)'"
+            >
+              <span class="lp-service-icon" aria-hidden="true">
+                <i [class]="service.icon"></i>
+              </span>
+              <h3>{{ service.title }}</h3>
+              <p>{{ service.description }}</p>
+              <span class="lp-service-cta">
+                Continue
+                <i class="pi pi-arrow-right" aria-hidden="true"></i>
+              </span>
+            </a>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. AI Features -->
+    <section id="ai" class="lp-section lp-ai" aria-labelledby="lp-ai-title">
+      <div class="lp-section-inner">
+        <header class="lp-section-head">
+          <p class="lp-kicker">AI features</p>
+          <h2 id="lp-ai-title" class="lp-section-title">Intelligence built into banking workflows</h2>
+          <p class="lp-section-lede">
+            Not a chatbot bolted on the side — guidance, voice capture, and multi-applicant flows
+            that hand off into real FormFlow modules.
+          </p>
+        </header>
+
+        <div class="lp-ai-grid">
+          @for (feature of aiFeatures; track feature.id) {
+            @if (feature.routerLink; as link) {
+              <a class="lp-ai-card" [routerLink]="link" [attr.aria-label]="feature.title">
+                <span class="lp-ai-icon" aria-hidden="true"><i [class]="feature.icon"></i></span>
+                <h3>{{ feature.title }}</h3>
+                <p>{{ feature.description }}</p>
+                <span class="lp-ai-cta">Explore <i class="pi pi-arrow-right" aria-hidden="true"></i></span>
+              </a>
+            } @else {
+              <article class="lp-ai-card">
+                <span class="lp-ai-icon" aria-hidden="true"><i [class]="feature.icon"></i></span>
+                <h3>{{ feature.title }}</h3>
+                <p>{{ feature.description }}</p>
+              </article>
+            }
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. How It Works -->
+    <section id="how" class="lp-section lp-how" aria-labelledby="lp-how-title">
+      <div class="lp-section-inner">
+        <header class="lp-section-head lp-section-head-center">
+          <p class="lp-kicker">How it works</p>
+          <h2 id="lp-how-title" class="lp-section-title">From registration to submission</h2>
+        </header>
+
+        <ol class="lp-journey">
+          @for (step of journeySteps; track step.id; let i = $index; let last = $last) {
+            <li class="lp-journey-step">
+              <div class="lp-journey-rail" aria-hidden="true">
+                <span class="lp-journey-index">{{ i + 1 }}</span>
+                @if (!last) {
+                  <span class="lp-journey-line"></span>
+                }
+              </div>
+              <div class="lp-journey-body">
+                <span class="lp-journey-icon" aria-hidden="true"><i [class]="step.icon"></i></span>
+                <h3>{{ step.title }}</h3>
+                <p>{{ step.description }}</p>
+              </div>
+            </li>
+          }
+        </ol>
+      </div>
+    </section>
+
+    <!-- 6. Why Choose FormFlow -->
+    <section id="why" class="lp-section lp-why" aria-labelledby="lp-why-title">
+      <div class="lp-section-inner">
+        <header class="lp-section-head">
+          <p class="lp-kicker">Why choose FormFlow</p>
+          <h2 id="lp-why-title" class="lp-section-title">Built like a real digital bank</h2>
+          <p class="lp-section-lede">
+            Clear advantages that map to how customers actually move money, open products, and get
+            help.
+          </p>
+        </header>
+
+        <div class="lp-why-grid">
+          @for (item of advantages; track item.id) {
+            <article class="lp-why-card">
+              <span class="lp-why-icon" aria-hidden="true"><i [class]="item.icon"></i></span>
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.description }}</p>
+            </article>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Statistics -->
+    <section id="stats" class="lp-section lp-stats" aria-labelledby="lp-stats-title">
+      <div class="lp-section-inner">
+        <header class="lp-section-head lp-section-head-center">
+          <p class="lp-kicker">Platform snapshot</p>
+          <h2 id="lp-stats-title" class="lp-section-title">Numbers that reflect the live catalog</h2>
+        </header>
+
+        <div class="lp-stats-grid">
+          @for (stat of stats; track stat.id) {
+            <article class="lp-stat">
+              <p class="lp-stat-value">{{ stat.value }}</p>
+              <p class="lp-stat-label">{{ stat.label }}</p>
+              <p class="lp-stat-hint">{{ stat.hint }}</p>
+            </article>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing CTA -->
+    <section class="lp-section lp-close" aria-labelledby="lp-close-title">
+      <div class="lp-close-inner">
+        <h2 id="lp-close-title">Ready to enter the banking workspace?</h2>
+        <p>Register to unlock modules, or login if you already have a FormFlow profile.</p>
+        <div class="lp-hero-cta">
+          <a class="lp-btn lp-btn-primary" routerLink="/register">Register</a>
+          <a class="lp-btn lp-btn-ghost" routerLink="/login">Login</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 8. Footer -->
+  <footer class="lp-footer">
+    <div class="lp-footer-inner">
+      <div class="lp-footer-brand">
+        <span class="lp-brand-mark lp-brand-mark-sm" aria-hidden="true">
+          <i class="pi pi-building"></i>
+        </span>
+        <div>
+          <p class="lp-footer-name">FormFlow</p>
+          <p class="lp-footer-tagline">Secure. Simple. Smart.</p>
+        </div>
+      </div>
+      <nav class="lp-footer-nav" aria-label="Footer">
+        @for (link of footerLinks; track link.id) {
+          <a [routerLink]="link.routerLink" [fragment]="link.fragment ?? undefined">{{ link.label }}</a>
+        }
+      </nav>
+      <p class="lp-footer-copy">&copy; {{ copyrightYear }} FormFlow Banking Portal</p>
+    </div>
+  </footer>
+</div>

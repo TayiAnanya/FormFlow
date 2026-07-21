@@ -1,0 +1,13 @@
+<section class="roadmap" aria-label="12-month financial roadmap">
+  <ol class="roadmap-list">
+    @for (step of steps; track step.period; let index = $index) {
+      <li class="roadmap-item">
+        <span class="roadmap-index" aria-hidden="true">{{ index + 1 }}</span>
+        <div>
+          <p class="roadmap-period">{{ step.period }}</p>
+          <p class="roadmap-goal">{{ step.goal }}</p>
+        </div>
+      </li>
+    }
+  </ol>
+</section>

@@ -1,0 +1,242 @@
+<section class="dashboard mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
+  <div class="dashboard-hero formflow-animate-in">
+    <div class="dashboard-hero-content">
+      <div class="dashboard-hero-copy">
+        <p class="dashboard-hero-eyebrow">Your banking workspace</p>
+        <h1 class="dashboard-hero-title">FormFlow</h1>
+        <p class="dashboard-hero-description">
+          Premium digital banking workflows — accounts, lending, cards, support, and AI guidance
+          in one calm, secure experience.
+        </p>
+      </div>
+      <div class="dashboard-hero-orb" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <div class="dashboard-stats">
+    @for (stat of stats; track stat.label; let i = $index) {
+      <div class="dashboard-stat-card" [style.animation-delay]="i * 60 + 'ms'">
+        <span class="dashboard-stat-icon" [attr.aria-hidden]="true">
+          <i [class]="stat.icon"></i>
+        </span>
+        <div>
+          <p class="dashboard-stat-value">{{ stat.value }}</p>
+          <p class="dashboard-stat-label">{{ stat.label }}</p>
+        </div>
+      </div>
+    }
+  </div>
+
+  <article class="advisor-feature-card formflow-animate-in">
+    <div class="advisor-feature-copy">
+      <p class="advisor-feature-eyebrow">AI Relationship Manager</p>
+      <h2 class="advisor-feature-title">Smart Banking Advisor</h2>
+      <p class="advisor-feature-description">
+        Describe your goals in natural language. Receive product recommendations, a health score,
+        and a 12-month roadmap — then apply in existing banking forms.
+      </p>
+      <ul class="advisor-feature-list">
+        <li><i class="pi pi-check" aria-hidden="true"></i> Conversational guidance</li>
+        <li><i class="pi pi-check" aria-hidden="true"></i> Product recommendations</li>
+        <li><i class="pi pi-check" aria-hidden="true"></i> Deep-link into existing modules</li>
+      </ul>
+    </div>
+    <div class="advisor-feature-action">
+      <span class="advisor-feature-icon" aria-hidden="true">
+        <i class="pi pi-comments"></i>
+      </span>
+      <p-button
+        label="Open Advisor"
+        icon="pi pi-arrow-right"
+        iconPos="right"
+        styleClass="formflow-btn scenario-open-btn"
+        [routerLink]="['/advisor']"
+      />
+    </div>
+  </article>
+
+  <div id="workflows" class="dashboard-workflows">
+    <h2 class="dashboard-section-title">Available Forms</h2>
+    <p class="dashboard-section-description">
+      Pick a product journey to open a schema-driven application experience.
+    </p>
+  </div>
+
+  <div class="dashboard-cards">
+    @for (scenario of scenarios; track scenario.id; let i = $index) {
+      <article class="scenario-card" [attr.data-accent]="i % 5">
+        <div class="scenario-card-glow" aria-hidden="true"></div>
+        <span class="scenario-card-icon" aria-hidden="true">
+          <i [class]="scenario.icon"></i>
+        </span>
+
+        @if (scenario.category) {
+          <p class="scenario-card-category">{{ scenario.category }}</p>
+        }
+        <h3 class="scenario-card-title">{{ scenario.title }}</h3>
+        <p class="scenario-card-description">{{ scenario.description }}</p>
+
+        <ul class="scenario-features" [attr.aria-label]="scenario.title + ' capabilities'">
+          @for (feature of scenario.features; track feature) {
+            <li><i class="pi pi-check" aria-hidden="true"></i> {{ feature }}</li>
+          }
+        </ul>
+
+        <div class="scenario-card-footer">
+          <p-button
+            label="Open Form"
+            icon="pi pi-arrow-right"
+            iconPos="right"
+            styleClass="formflow-btn scenario-open-btn w-full"
+            [routerLink]="['/forms', scenario.id]"
+          />
+        </div>
+      </article>
+    }
+  </div>
+
+  <!-- Personalized widget — does not replace the dashboard above -->
+  <section id="workspace" class="my-workspace" aria-labelledby="my-workspace-title">
+    <header class="my-workspace-header">
+      <span class="my-workspace-header-icon" aria-hidden="true"><i class="pi pi-briefcase"></i></span>
+      <div>
+        <h2 id="my-workspace-title" class="dashboard-section-title">My Workspace</h2>
+        <p class="dashboard-section-description">
+          Applications, drafts, and activity for your signed-in profile.
+        </p>
+      </div>
+    </header>
+
+    <div class="my-workspace-grid">
+      <article class="my-workspace-panel" id="applications">
+        <h3><i class="pi pi-folder" aria-hidden="true"></i> My Applications</h3>
+        @if (myApplications().length === 0) {
+          <p class="my-workspace-empty">No applications submitted yet.</p>
+        } @else {
+          <ul class="my-workspace-list">
+            @for (app of myApplications(); track app.id) {
+              <li>
+                <div>
+                  <p class="my-workspace-item-title">{{ app.formTitle }}</p>
+                  <p class="my-workspace-item-meta">{{ app.id }} · {{ app.submittedAt | date: 'mediumDate' }}</p>
+                </div>
+                <div class="my-workspace-item-actions">
+                  <p-tag [value]="app.status" [severity]="statusSeverity(app.status)" />
+                  <p-button
+                    label="Quick View"
+                    icon="pi pi-eye"
+                    [text]="true"
+                    size="small"
+                    [routerLink]="['/applications', app.id]"
+                  />
+                </div>
+              </li>
+            }
+          </ul>
+        }
+      </article>
+
+      <article class="my-workspace-panel">
+        <h3><i class="pi pi-save" aria-hidden="true"></i> Continue Drafts</h3>
+        @if (myDrafts().length === 0) {
+          <p class="my-workspace-empty">No drafts in progress.</p>
+        } @else {
+          <ul class="my-workspace-list">
+            @for (draft of myDrafts(); track draft.formType) {
+              <li>
+                <div>
+                  <p class="my-workspace-item-title">{{ draft.formTitle }}</p>
+                  <p class="my-workspace-item-meta">Updated {{ draft.updatedAt | date: 'medium' }}</p>
+                </div>
+                <p-button
+                  label="Continue Application"
+                  icon="pi pi-arrow-right"
+                  iconPos="right"
+                  size="small"
+                  styleClass="formflow-btn"
+                  [routerLink]="['/forms', draft.formType]"
+                />
+              </li>
+            }
+          </ul>
+        }
+      </article>
+
+      <article class="my-workspace-panel">
+        <h3><i class="pi pi-chart-bar" aria-hidden="true"></i> Application Statistics</h3>
+        <div class="my-workspace-stats">
+          <div>
+            <p class="my-workspace-stat-value">{{ applicationStats().submitted }}</p>
+            <p class="my-workspace-stat-label">Submitted</p>
+          </div>
+          <div>
+            <p class="my-workspace-stat-value">{{ applicationStats().approved }}</p>
+            <p class="my-workspace-stat-label">Approved</p>
+          </div>
+          <div>
+            <p class="my-workspace-stat-value">{{ applicationStats().pending }}</p>
+            <p class="my-workspace-stat-label">Pending</p>
+          </div>
+          <div>
+            <p class="my-workspace-stat-value">{{ applicationStats().drafts }}</p>
+            <p class="my-workspace-stat-label">Drafts</p>
+          </div>
+          <div>
+            <p class="my-workspace-stat-value">{{ applicationStats().resolvedSupport }}</p>
+            <p class="my-workspace-stat-label">Resolved support</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="my-workspace-panel">
+        <h3><i class="pi pi-history" aria-hidden="true"></i> Recent Activity</h3>
+        @if (timeline().length === 0) {
+          <p class="my-workspace-empty">Activity will appear as you use banking services.</p>
+        } @else {
+          <ul class="my-workspace-activity">
+            @for (event of timeline(); track event.id) {
+              <li>
+                <span class="my-workspace-activity-dot" aria-hidden="true"></span>
+                <div>
+                  <p class="my-workspace-item-title">{{ event.message }}</p>
+                  <p class="my-workspace-item-meta">{{ event.createdAt | date: 'medium' }}</p>
+                </div>
+              </li>
+            }
+          </ul>
+        }
+      </article>
+
+      <article class="my-workspace-panel my-workspace-panel-wide">
+        <h3><i class="pi pi-sparkles" aria-hidden="true"></i> AI Recommendations</h3>
+        @if (recommendations(); as rec) {
+          <p class="my-workspace-rec-summary">{{ rec.summary }}</p>
+          <div class="my-workspace-rec-grid">
+            @for (product of rec.productCards; track product.id) {
+              <div class="my-workspace-rec-card">
+                <p class="my-workspace-item-meta">{{ product.categoryLabel }}</p>
+                <p class="my-workspace-item-title">{{ product.title }}</p>
+                <p class="my-workspace-rec-reason">{{ product.reason }}</p>
+                <p-button
+                  [label]="product.ctaLabel || 'Continue'"
+                  icon="pi pi-arrow-right"
+                  iconPos="right"
+                  size="small"
+                  styleClass="formflow-btn"
+                  [routerLink]="['/forms', product.targetScenarioId]"
+                  (onClick)="continueRecommendation(product.prefill)"
+                />
+              </div>
+            }
+          </div>
+        } @else {
+          <p class="my-workspace-empty">
+            No saved recommendations yet. Open
+            <a routerLink="/advisor">Smart Banking Advisor</a>
+            to generate a plan.
+          </p>
+        }
+      </article>
+    </div>
+  </section>
+</section>

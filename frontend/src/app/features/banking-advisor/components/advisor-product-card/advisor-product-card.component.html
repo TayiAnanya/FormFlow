@@ -1,0 +1,60 @@
+<article class="product-card">
+  <div class="product-card-header">
+    <span class="product-card-icon" aria-hidden="true">
+      <i [class]="product.icon"></i>
+    </span>
+    <div>
+      <p class="product-card-category">{{ product.categoryLabel }}</p>
+      <h3 class="product-card-title">{{ product.title }}</h3>
+    </div>
+  </div>
+
+  <dl class="product-card-meta">
+    @if (product.interestRate) {
+      <div>
+        <dt>Interest Rate</dt>
+        <dd>{{ product.interestRate }}</dd>
+      </div>
+    }
+    @if (product.estimatedEmi !== undefined) {
+      <div>
+        <dt>Estimated EMI</dt>
+        <dd>{{ formatCurrency(product.estimatedEmi) }}</dd>
+      </div>
+    }
+    @if (product.maxLoan !== undefined) {
+      <div>
+        <dt>Maximum Loan</dt>
+        <dd>{{ formatCurrency(product.maxLoan) }}</dd>
+      </div>
+    }
+    @if (product.expectedReturns) {
+      <div>
+        <dt>Expected Returns</dt>
+        <dd>{{ product.expectedReturns }}</dd>
+      </div>
+    }
+    @if (product.tenure) {
+      <div>
+        <dt>Tenure</dt>
+        <dd>{{ product.tenure }}</dd>
+      </div>
+    }
+  </dl>
+
+  @if (product.benefits?.length) {
+    <ul class="product-card-benefits">
+      @for (benefit of product.benefits; track benefit) {
+        <li>{{ benefit }}</li>
+      }
+    </ul>
+  }
+
+  <p-button
+    [label]="product.ctaLabel"
+    icon="pi pi-arrow-right"
+    iconPos="right"
+    styleClass="formflow-btn w-full"
+    (onClick)="onApply()"
+  />
+</article>

@@ -1,0 +1,17 @@
+<input
+  #fileInput
+  type="file"
+  class="sr-only"
+  accept=".pdf,application/pdf"
+  aria-label="Upload a searchable PDF"
+  (change)="onFileChange($event)"
+/>
+
+<p-button
+  label="Upload Document"
+  icon="pi pi-upload"
+  styleClass="formflow-btn smart-assist-upload-btn"
+  [loading]="busy"
+  [disabled]="busy"
+  (onClick)="triggerFilePicker()"
+/>

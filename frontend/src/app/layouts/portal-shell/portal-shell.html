@@ -1,0 +1,84 @@
+<div class="flex min-h-screen flex-col">
+  <header class="portal-header">
+    <div class="portal-header-inner">
+      <a class="portal-brand" routerLink="/dashboard" aria-label="FormFlow Banking Portal home">
+        <span class="portal-brand-icon" aria-hidden="true">
+          <i class="pi pi-building"></i>
+        </span>
+        <span class="portal-brand-text">
+          <span class="portal-brand-title">FormFlow</span>
+          <span class="portal-brand-tagline">Premium digital banking</span>
+        </span>
+      </a>
+
+      <nav class="portal-nav" aria-label="Main navigation">
+        <a
+          class="portal-nav-link"
+          routerLink="/dashboard"
+          routerLinkActive="portal-nav-link-active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Dashboard
+        </a>
+        <a class="portal-nav-link" routerLink="/dashboard" fragment="workflows">Forms</a>
+        <a class="portal-nav-link" routerLink="/dashboard" fragment="applications">Applications</a>
+        <a class="portal-nav-link" routerLink="/advisor" routerLinkActive="portal-nav-link-active">
+          Advisor
+        </a>
+        <a class="portal-nav-link" routerLink="/profile" routerLinkActive="portal-nav-link-active">
+          Profile
+        </a>
+      </nav>
+
+      <div class="portal-user">
+        <div class="portal-user-meta">
+          <span class="portal-welcome" aria-live="polite">Welcome, {{ welcomeName() }}</span>
+          <span class="portal-date">{{ todayLabel }}</span>
+        </div>
+
+        <button type="button" class="portal-notify" aria-label="Notifications" title="Notifications">
+          <i class="pi pi-bell" aria-hidden="true"></i>
+          <span class="portal-notify-dot" aria-hidden="true"></span>
+        </button>
+
+        <p-menu #accountMenu [model]="accountMenuItems" [popup]="true" appendTo="body" />
+        <button
+          type="button"
+          class="portal-avatar"
+          (click)="accountMenu.toggle($event)"
+          [attr.aria-label]="'Account menu for ' + welcomeName()"
+        >
+          {{ avatarInitials() }}
+        </button>
+
+        <p-button
+          label="Logout"
+          icon="pi pi-sign-out"
+          [text]="true"
+          severity="secondary"
+          styleClass="portal-logout-btn"
+          (onClick)="logout()"
+        />
+      </div>
+    </div>
+  </header>
+
+  <main class="portal-main flex-1">
+    <router-outlet />
+  </main>
+
+  <footer class="portal-footer">
+    <div class="portal-footer-inner">
+      <div class="portal-footer-brand">
+        <span class="portal-footer-icon" aria-hidden="true">
+          <i class="pi pi-shield"></i>
+        </span>
+        <div>
+          <p class="portal-footer-tagline">Secure. Simple. Smart.</p>
+          <p class="portal-footer-sub">Enterprise-grade digital banking experience.</p>
+        </div>
+      </div>
+      <p class="portal-footer-copy">&copy; 2026 FormFlow Banking Portal</p>
+    </div>
+  </footer>
+</div>

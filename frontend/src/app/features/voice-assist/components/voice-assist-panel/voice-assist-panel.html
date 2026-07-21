@@ -1,0 +1,135 @@
+<section class="voice-assist-panel" [attr.aria-label]="panelTitle">
+  <div class="voice-assist-panel-inner">
+    <div class="voice-assist-copy">
+      <p class="voice-assist-eyebrow">{{ panelTitle }}</p>
+      <h2 class="voice-assist-title">Report fraud with your voice</h2>
+      <p class="voice-assist-description">{{ panelDescription }}</p>
+
+      <div class="voice-assist-methods">
+        <p class="voice-assist-methods-label">Supported input methods:</p>
+        <ul class="voice-assist-methods-list">
+          <li>Manual entry</li>
+          <li>Voice input</li>
+          <li class="voice-assist-method-future">Supporting document upload (coming soon)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="voice-assist-actions">
+      <app-voice-input
+        (transcript)="onTranscript($event)"
+        (listeningChange)="onListeningChange($event)"
+        (speechConfidence)="onSpeechConfidence($event)"
+        (recognitionError)="onRecognitionError($event.message)"
+      />
+
+      <p class="voice-assist-or" aria-hidden="true">OR</p>
+      <p class="voice-assist-manual">Continue filling manually below.</p>
+
+      <p-button
+        label="Upload Supporting Document"
+        icon="pi pi-upload"
+        severity="secondary"
+        [outlined]="true"
+        [disabled]="true"
+        styleClass="formflow-btn"
+        aria-label="Supporting document upload coming soon"
+      />
+    </div>
+  </div>
+
+  <ol class="voice-assist-flow" aria-label="Voice assist progress">
+    <li [class.voice-assist-flow-active]="phase === 'ready'">Start Recording</li>
+    <li [class.voice-assist-flow-active]="phase === 'listening'">Listening… / Stop Recording</li>
+    <li [class.voice-assist-flow-active]="phase === 'analyzing'">Analyzing your report…</li>
+    <li [class.voice-assist-flow-active]="phase === 'populated'">Form populated successfully</li>
+  </ol>
+
+  @if (transcriptPreview) {
+    <div class="voice-assist-transcript" aria-live="polite">
+      <div class="voice-assist-transcript-header">
+        <span>Transcript</span>
+        <button type="button" class="voice-assist-clear" (click)="clearTranscript()">Clear</button>
+      </div>
+      <p class="voice-assist-transcript-text">{{ transcriptPreview }}</p>
+    </div>
+  }
+
+  @if (errorMessage) {
+    <p-message severity="error" styleClass="w-full mt-4">
+      {{ errorMessage }}
+    </p-message>
+  }
+
+  @if (statusMessage && !errorMessage) {
+    <p-message
+      [severity]="phase === 'populated' ? 'success' : 'info'"
+      styleClass="w-full mt-4"
+    >
+      {{ statusMessage }}
+    </p-message>
+  }
+
+  @if (insights && (phase === 'populated' || phase === 'transcript')) {
+    <div class="voice-assist-insights mt-4">
+      <div class="voice-assist-summary">
+        <h3 class="voice-assist-insights-title">AI Summary</h3>
+        <p class="voice-assist-summary-text">{{ insights.summary }}</p>
+        <p class="voice-assist-overall">
+          Overall confidence:
+          <strong [class]="'voice-assist-level-' + insights.overallLevel">
+            {{ confidenceLabel(insights.overallLevel) }}
+            ({{ confidencePercent(insights.overallConfidence) }}%)
+          </strong>
+        </p>
+      </div>
+
+      <div class="voice-assist-confidence">
+        <h3 class="voice-assist-insights-title">Confidence Indicators</h3>
+        <ul class="voice-assist-confidence-list">
+          @for (field of insights.fields; track field.key) {
+            <li class="voice-assist-confidence-item">
+              <div class="voice-assist-confidence-meta">
+                <span class="voice-assist-confidence-label">{{ field.label }}</span>
+                <span class="voice-assist-confidence-value">{{ field.displayValue }}</span>
+              </div>
+              <div class="voice-assist-confidence-bar-track" aria-hidden="true">
+                <div
+                  class="voice-assist-confidence-bar-fill"
+                  [class]="'voice-assist-level-' + field.level"
+                  [style.width.%]="confidencePercent(field.confidence)"
+                ></div>
+              </div>
+              <span class="voice-assist-confidence-score">
+                {{ confidenceLabel(field.level) }} · {{ confidencePercent(field.confidence) }}%
+              </span>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  }
+
+  @if (pendingMappedValues && conflictFieldKeys.length > 0) {
+    <div class="voice-assist-conflict mt-4">
+      <p class="voice-assist-conflict-text">
+        Some extracted fields already have values. Choose how to apply the spoken details.
+      </p>
+      <div class="voice-assist-conflict-actions">
+        <p-button
+          label="Apply to empty fields only"
+          icon="pi pi-check"
+          severity="secondary"
+          styleClass="formflow-btn"
+          (onClick)="applyToEmptyFieldsOnly()"
+        />
+        <p-button
+          label="Replace existing values"
+          icon="pi pi-refresh"
+          styleClass="formflow-btn"
+          (onClick)="replaceExistingValues()"
+        />
+      </div>
+    </div>
+  }
+</section>

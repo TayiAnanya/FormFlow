@@ -1,0 +1,43 @@
+<section class="profile-page mx-auto max-w-2xl px-4 py-8 sm:px-6">
+  <div class="mb-6">
+    <p-button
+      label="Back to My Workspace"
+      icon="pi pi-arrow-left"
+      severity="secondary"
+      [text]="true"
+      routerLink="/dashboard"
+    />
+  </div>
+
+  @if (user(); as profile) {
+    <article class="profile-card">
+      <p class="profile-eyebrow">Customer Profile</p>
+      <h1 class="profile-title">{{ profile.fullName }}</h1>
+
+      <dl class="profile-grid">
+        <div>
+          <dt>Name</dt>
+          <dd>{{ profile.fullName }}</dd>
+        </div>
+        <div>
+          <dt>Email</dt>
+          <dd>{{ profile.email }}</dd>
+        </div>
+        <div>
+          <dt>Mobile</dt>
+          <dd>{{ profile.mobileNumber }}</dd>
+        </div>
+        <div>
+          <dt>Customer ID</dt>
+          <dd>{{ workspaceProfile()?.customerId || '—' }}</dd>
+        </div>
+        <div>
+          <dt>Registration Date</dt>
+          <dd>{{ registrationDate() }}</dd>
+        </div>
+      </dl>
+    </article>
+  } @else {
+    <p>No profile is available. Please log in again.</p>
+  }
+</section>

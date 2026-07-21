@@ -1,0 +1,67 @@
+:host {
+  display: inline-block;
+}
+
+.health-score {
+  position: relative;
+  width: 8.5rem;
+  height: 8.5rem;
+}
+
+.health-score-ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.health-score-track,
+.health-score-progress {
+  fill: none;
+  stroke-width: 10;
+}
+
+.health-score-track {
+  stroke: rgba(107, 143, 113, 0.15);
+}
+
+.health-score-progress {
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.6s ease;
+}
+
+.health-score[data-tone='green'] .health-score-progress {
+  stroke: #3d8b7a;
+}
+
+.health-score[data-tone='amber'] .health-score-progress {
+  stroke: #e8a87c;
+}
+
+.health-score[data-tone='red'] .health-score-progress {
+  stroke: #b42318;
+}
+
+.health-score-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+}
+
+.health-score-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #2d2d2d;
+  line-height: 1;
+}
+
+.health-score-caption {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(45, 45, 45, 0.55);
+}

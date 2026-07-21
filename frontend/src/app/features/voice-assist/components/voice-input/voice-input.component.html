@@ -1,0 +1,54 @@
+<div class="voice-input" [attr.aria-label]="'Voice input'">
+  @if (!isListening) {
+    <div class="voice-input-idle">
+      <span class="voice-mic-orb" aria-hidden="true">
+        <i class="pi pi-microphone"></i>
+      </span>
+      <p-button
+        label="Start Recording"
+        icon="pi pi-microphone"
+        severity="secondary"
+        [outlined]="true"
+        [disabled]="isUnsupported"
+        styleClass="formflow-btn voice-input-btn"
+        (onClick)="startRecording()"
+      />
+    </div>
+  } @else {
+    <div class="voice-input-recording" role="status">
+      <span class="voice-mic-orb voice-mic-orb-live" aria-hidden="true">
+        <i class="pi pi-microphone"></i>
+        <span class="voice-wave"></span>
+        <span class="voice-wave voice-wave-delay"></span>
+      </span>
+      <p class="voice-input-listening">
+        <span class="voice-input-pulse" aria-hidden="true"></span>
+        Listening… Speak naturally about the issue.
+      </p>
+      <p-button
+        label="Stop Recording"
+        icon="pi pi-stop-circle"
+        severity="danger"
+        styleClass="formflow-btn voice-input-stop-btn"
+        (onClick)="stopRecording()"
+        [attr.aria-pressed]="true"
+      />
+    </div>
+  }
+
+  @if (livePreview && isListening) {
+    <p class="voice-input-interim" aria-live="polite">{{ livePreview }}</p>
+  }
+
+  @if (isUnsupported) {
+    <p-message severity="warn" styleClass="w-full voice-input-message mt-3">
+      {{ unsupportedMessage }}
+    </p-message>
+  }
+
+  @if (errorMessage && !isUnsupported) {
+    <p-message severity="error" styleClass="w-full voice-input-message mt-3">
+      {{ errorMessage }}
+    </p-message>
+  }
+</div>

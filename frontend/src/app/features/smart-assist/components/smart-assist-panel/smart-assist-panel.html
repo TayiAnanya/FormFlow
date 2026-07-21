@@ -1,0 +1,62 @@
+<section class="smart-assist-panel" [attr.aria-label]="panelTitle">
+  <div class="smart-assist-panel-inner">
+    <div class="smart-assist-panel-copy">
+      <p class="smart-assist-eyebrow">{{ panelTitle }}</p>
+      <h2 class="smart-assist-title">Need help filling the form?</h2>
+      <p class="smart-assist-description">
+        {{ panelDescription }}
+      </p>
+
+      <div class="smart-assist-supported">
+        <p class="smart-assist-supported-label">Supported documents:</p>
+        <ul class="smart-assist-supported-list">
+          @for (document of supportedDocuments; track document) {
+            <li>{{ document }}</li>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="smart-assist-actions">
+      <app-document-upload (fileSelected)="onFileSelected($event)" />
+
+      <p class="smart-assist-or" aria-hidden="true">OR</p>
+      <p class="smart-assist-manual">Continue filling manually.</p>
+    </div>
+  </div>
+
+  @if (errorMessage) {
+    <p-message severity="error" styleClass="w-full smart-assist-error mt-4">
+      {{ errorMessage }}
+    </p-message>
+  }
+
+  @if (statusMessage && !errorMessage) {
+    <p-message severity="info" styleClass="w-full smart-assist-status mt-4">
+      {{ statusMessage }}
+    </p-message>
+  }
+
+  @if (pendingMappedValues && conflictFieldKeys.length > 0) {
+    <div class="smart-assist-conflict mt-4">
+      <p class="smart-assist-conflict-text">
+        Some extracted fields already have values. Choose how to apply the extracted details.
+      </p>
+      <div class="smart-assist-conflict-actions">
+        <p-button
+          label="Apply to empty fields only"
+          icon="pi pi-check"
+          severity="secondary"
+          styleClass="formflow-btn"
+          (onClick)="applyToEmptyFieldsOnly()"
+        />
+        <p-button
+          label="Replace existing values"
+          icon="pi pi-refresh"
+          styleClass="formflow-btn"
+          (onClick)="replaceExistingValues()"
+        />
+      </div>
+    </div>
+  }
+</section>

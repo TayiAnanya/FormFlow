@@ -1,0 +1,17 @@
+<div class="health-score" [attr.data-tone]="tone" [attr.aria-label]="'Financial health score ' + clampedScore">
+  <svg class="health-score-ring" viewBox="0 0 120 120" aria-hidden="true">
+    <circle class="health-score-track" cx="60" cy="60" r="54" />
+    <circle
+      class="health-score-progress"
+      cx="60"
+      cy="60"
+      r="54"
+      [attr.stroke-dasharray]="circumference"
+      [attr.stroke-dashoffset]="dashOffset"
+    />
+  </svg>
+  <div class="health-score-label">
+    <span class="health-score-value">{{ clampedScore }}</span>
+    <span class="health-score-caption">Health Score</span>
+  </div>
+</div>

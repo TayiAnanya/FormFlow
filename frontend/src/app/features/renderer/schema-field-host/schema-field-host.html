@@ -1,0 +1,255 @@
+@if (!isFieldHidden(field) && isFieldVisible(field)) {
+  <div
+    class="formflow-field"
+    [class.formflow-field-invalid]="shouldShowFieldError(field)"
+    [class.formflow-field-disabled]="isFieldDisabled(field)"
+    [class.formflow-field-conditional]="field.visibleWhen"
+    [formGroup]="formGroup"
+  >
+    @switch (field.type) {
+      @case ('text') {
+        <label class="formflow-field-label" [for]="fieldId(field)">
+          <i [class]="'formflow-field-icon ' + fieldIcon(field)" aria-hidden="true"></i>
+          <span>{{ field.label }}</span>
+        </label>
+        <input
+          pInputText
+          class="w-full formflow-control"
+          [class.formflow-control-readonly]="isFieldReadonly(field)"
+          [id]="fieldId(field)"
+          [attr.name]="field.key"
+          [attr.autocomplete]="autocomplete(field) ?? null"
+          [formControlName]="field.key"
+          [placeholder]="field.placeholder ?? ''"
+          [readOnly]="isFieldReadonly(field)"
+          [attr.aria-readonly]="isFieldReadonly(field) ? true : null"
+          [attr.aria-invalid]="shouldShowFieldError(field)"
+          [attr.aria-describedby]="shouldShowFieldError(field) ? fieldId(field) + '-error' : null"
+        />
+      }
+      @case ('textarea') {
+        <label class="formflow-field-label" [for]="fieldId(field)">
+          <i [class]="'formflow-field-icon ' + fieldIcon(field)" aria-hidden="true"></i>
+          <span>{{ field.label }}</span>
+        </label>
+        <textarea
+          pTextarea
+          class="w-full formflow-control"
+          [class.formflow-control-readonly]="isFieldReadonly(field)"
+          [id]="fieldId(field)"
+          [attr.name]="field.key"
+          [formControlName]="field.key"
+          [placeholder]="field.placeholder ?? ''"
+          rows="4"
+          [readOnly]="isFieldReadonly(field)"
+          [attr.aria-readonly]="isFieldReadonly(field) ? true : null"
+          [attr.aria-invalid]="shouldShowFieldError(field)"
+          [attr.aria-describedby]="shouldShowFieldError(field) ? fieldId(field) + '-error' : null"
+        ></textarea>
+      }
+      @case ('date') {
+        <label class="formflow-field-label" [for]="fieldId(field)">
+          <i [class]="'formflow-field-icon ' + fieldIcon(field)" aria-hidden="true"></i>
+          <span>{{ field.label }}</span>
+        </label>
+        <p-datepicker
+          class="w-full"
+          [inputId]="fieldId(field)"
+          [attr.name]="field.key"
+          [formControlName]="field.key"
+          dateFormat="yy-mm-dd"
+          dataType="string"
+          [showIcon]="true"
+          inputStyleClass="formflow-control w-full"
+          [styleClass]="'w-full' + (shouldShowFieldError(field) ? ' formflow-control-invalid' : '')"
+          (onInput)="onDatePickerInput(field, $event)"
+          (onSelect)="onDatePickerSelect(field, $event)"
+          (onBlur)="onDatePickerBlur(field, $event)"
+          [attr.aria-invalid]="shouldShowFieldError(field)"
+          [attr.aria-describedby]="shouldShowFieldError(field) ? fieldId(field) + '-error' : null"
+        />
+      }
+      @case ('dropdown') {
+        <label class="formflow-field-label" [for]="fieldId(field)">
+          <i [class]="'formflow-field-icon ' + fieldIcon(field)" aria-hidden="true"></i>
+          <span>{{ field.label }}</span>
+        </label>
+        <p-select
+          class="w-full"
+          [inputId]="fieldId(field)"
+          [attr.name]="field.key"
+          [formControlName]="field.key"
+          [options]="field.options ?? []"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Select an option"
+          [styleClass]="
+            'w-full formflow-control' + (shouldShowFieldError(field) ? ' formflow-control-invalid' : '')
+          "
+          [ariaLabel]="field.label"
+          [attr.aria-invalid]="shouldShowFieldError(field)"
+          [attr.aria-describedby]="shouldShowFieldError(field) ? fieldId(field) + '-error' : null"
+        />
+      }
+      @case ('multiselect') {
+        <label class="formflow-field-label" [for]="fieldId(field)">
+          <i [class]="'formflow-field-icon ' + fieldIcon(field)" aria-hidden="true"></i>
+          <span>{{ field.label }}</span>
+        </label>
+        <p-multiselect
+          class="w-full"
+          [inputId]="fieldId(field)"
+          [attr.name]="field.key"
+          [formControlName]="field.key"
+          [options]="field.options ?? []"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Select options"
+          display="chip"
+          [styleClass]="
+            'w-full formflow-control' + (shouldShowFieldError(field) ? ' formflow-control-invalid' : '')
+          "
+          [ariaLabel]="field.label"
+          [attr.aria-invalid]="shouldShowFieldError(field)"
+          [attr.aria-describedby]="shouldShowFieldError(field) ? fieldId(field) + '-error' : null"
+        />
+      }
+      @case ('checkbox') {
+        <div class="formflow-checkbox-row">
+          <p-checkbox
+            [inputId]="fieldId(field)"
+            [attr.name]="field.key"
+            [formControlName]="field.key"
+            [binary]="true"
+            [ariaLabel]="field.label"
+            [attr.aria-invalid]="shouldShowFieldError(field)"
+            [attr.aria-describedby]="shouldShowFieldError(field) ? fieldId(field) + '-error' : null"
+          />
+          <label class="formflow-field-label formflow-field-label-checkbox" [for]="fieldId(field)">
+            <span>{{ field.label }}</span>
+          </label>
+        </div>
+      }
+      @case ('file') {
+        <label class="formflow-field-label" [for]="fieldId(field)">
+          <i [class]="'formflow-field-icon ' + fieldIcon(field)" aria-hidden="true"></i>
+          <span>{{ field.label }}</span>
+        </label>
+        <div class="formflow-file-control">
+          <input
+            #fileInput
+            type="file"
+            class="formflow-file-input"
+            [id]="fieldId(field)"
+            [attr.name]="field.key"
+            [attr.accept]="field.accept ?? null"
+            [disabled]="isFieldDisabled(field) || isFieldReadonly(field)"
+            (change)="onFileSelected(field, $event)"
+            [attr.aria-invalid]="shouldShowFieldError(field)"
+            [attr.aria-describedby]="shouldShowFieldError(field) ? fieldId(field) + '-error' : null"
+          />
+          @if (fileDisplayName(field)) {
+            <div class="formflow-file-selected">
+              <span class="formflow-file-name">{{ fileDisplayName(field) }}</span>
+              <button
+                type="button"
+                class="formflow-file-clear"
+                (click)="clearFile(field, fileInput)"
+                [disabled]="isFieldDisabled(field) || isFieldReadonly(field)"
+              >
+                Clear
+              </button>
+            </div>
+          }
+        </div>
+      }
+      @case ('repeater') {
+        <div class="formflow-repeater" [attr.aria-label]="field.label">
+          <div class="formflow-repeater-header">
+            <h3 class="formflow-repeater-title">
+              <i [class]="'formflow-field-icon ' + fieldIcon(field)" aria-hidden="true"></i>
+              <span>{{ field.label }}</span>
+            </h3>
+          </div>
+
+          <div [formArrayName]="field.key" class="formflow-repeater-items">
+            @for (row of asFormArray(field).controls; track $index; let index = $index) {
+              <div
+                class="formflow-repeater-item"
+                [class.formflow-repeater-item-expanded]="isRowExpanded(field, index)"
+                [formGroupName]="index"
+              >
+                <button
+                  type="button"
+                  class="formflow-repeater-item-toggle"
+                  (click)="toggleRowExpanded(field, index)"
+                  [attr.aria-expanded]="isRowExpanded(field, index)"
+                >
+                  <div class="formflow-repeater-item-summary">
+                    <h4 class="formflow-repeater-item-title">{{ itemLabel(field, index) }}</h4>
+                    <p class="formflow-repeater-item-subtitle">{{ rowSummary(field, index) }}</p>
+                  </div>
+                  <i
+                    class="pi"
+                    [class.pi-chevron-down]="!isRowExpanded(field, index)"
+                    [class.pi-chevron-up]="isRowExpanded(field, index)"
+                    aria-hidden="true"
+                  ></i>
+                </button>
+
+                @if (canRemoveItem(field)) {
+                  <div class="formflow-repeater-item-toolbar">
+                    <p-button
+                      type="button"
+                      [label]="field.removeButtonText || 'Remove'"
+                      icon="pi pi-trash"
+                      severity="danger"
+                      [text]="true"
+                      styleClass="formflow-repeater-remove"
+                      (onClick)="onRemoveItem(field, index)"
+                    />
+                  </div>
+                }
+
+                <div
+                  class="formflow-repeater-item-body"
+                  [class.formflow-repeater-item-body-open]="isRowExpanded(field, index)"
+                >
+                  <div class="formflow-repeater-item-fields">
+                    @for (child of field.fields ?? []; track child.key) {
+                      <app-schema-field-host
+                        [field]="child"
+                        [formGroup]="rowGroup(field, index)"
+                        [submitted]="submitted"
+                        [idPrefix]="rowIdPrefix(field, index)"
+                      />
+                    }
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+
+          @if (canAddItem(field)) {
+            <div class="formflow-repeater-actions">
+              <p-button
+                type="button"
+                [label]="field.addButtonText || 'Add Item'"
+                icon="pi pi-plus"
+                styleClass="formflow-btn"
+                (onClick)="onAddItem(field)"
+              />
+            </div>
+          }
+        </div>
+      }
+    }
+
+    @if (fieldErrorMessage(field); as message) {
+      <small class="formflow-field-error" [id]="fieldId(field) + '-error'" role="alert">
+        <i class="pi pi-exclamation-circle formflow-field-error-icon" aria-hidden="true"></i>
+        <span>{{ message }}</span>
+      </small>
+    }
+  </div>
+}

@@ -1,0 +1,53 @@
+<section class="auth-page">
+  <a class="auth-back" routerLink="/">← Back to home</a>
+
+  <div class="auth-card">
+    <p class="auth-eyebrow">Welcome back</p>
+    <h1 class="auth-title">Login</h1>
+    <p class="auth-copy">Sign in to continue to your FormFlow banking dashboard.</p>
+
+    <form class="auth-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+      <div class="auth-field">
+        <label for="login-email">Email</label>
+        <input
+          id="login-email"
+          pInputText
+          type="email"
+          class="w-full"
+          formControlName="email"
+          autocomplete="email"
+        />
+        @if (submitted && form.controls.email.invalid) {
+          <small class="auth-error">Enter a valid email address.</small>
+        }
+      </div>
+
+      <div class="auth-field">
+        <label for="login-password">Password</label>
+        <p-password
+          inputId="login-password"
+          formControlName="password"
+          [feedback]="false"
+          [toggleMask]="true"
+          styleClass="w-full"
+          inputStyleClass="w-full"
+          autocomplete="current-password"
+        />
+        @if (submitted && form.controls.password.invalid) {
+          <small class="auth-error">Password is required.</small>
+        }
+      </div>
+
+      @if (errorMessage) {
+        <p-message severity="error" styleClass="w-full" [text]="errorMessage" />
+      }
+
+      <p-button type="submit" label="Login" icon="pi pi-sign-in" styleClass="formflow-btn w-full" />
+    </form>
+
+    <p class="auth-switch">
+      New customer?
+      <a routerLink="/register" queryParamsHandling="preserve">Create an account</a>
+    </p>
+  </div>
+</section>

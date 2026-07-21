@@ -1,0 +1,49 @@
+<section class="app-detail mx-auto max-w-4xl px-4 py-8 sm:px-6">
+  <p-button
+    label="Back to My Workspace"
+    icon="pi pi-arrow-left"
+    severity="secondary"
+    [text]="true"
+    routerLink="/dashboard"
+  />
+
+  @if (application(); as app) {
+    <p-card styleClass="mt-6 app-detail-card">
+      <ng-template #header>
+        <div class="app-detail-header">
+          <div>
+            <p class="app-detail-kicker">Application details</p>
+            <h1>{{ app.formTitle }}</h1>
+            <p class="app-detail-id">{{ app.id }}</p>
+          </div>
+          <p-tag [value]="app.status" [severity]="statusSeverity(app.status)" />
+        </div>
+      </ng-template>
+
+      <dl class="app-detail-meta">
+        <div>
+          <dt>Submitted</dt>
+          <dd>{{ formatDate(app.submittedAt) }}</dd>
+        </div>
+        <div>
+          <dt>Summary</dt>
+          <dd>{{ app.summary }}</dd>
+        </div>
+      </dl>
+
+      <div class="app-detail-readonly">
+        <h2>Submitted information</h2>
+        @if (schemaResult(); as result) {
+          @if (result.status === 'success') {
+            <app-application-summary-view [schema]="result.schema" [values]="app.values" />
+          } @else {
+            <p-message severity="warn" [text]="result.message" />
+            <pre class="app-detail-json">{{ app.values | json }}</pre>
+          }
+        }
+      </div>
+    </p-card>
+  } @else {
+    <p-message class="mt-6 block" severity="warn" text="Application not found for your account." />
+  }
+</section>

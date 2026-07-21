@@ -1,0 +1,154 @@
+<section class="form-host mx-auto max-w-4xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+  <div class="mb-8">
+    <p-button
+      label="Back to My Workspace"
+      icon="pi pi-arrow-left"
+      severity="secondary"
+      [text]="true"
+      styleClass="form-host-back-btn"
+      routerLink="/dashboard"
+    />
+  </div>
+
+  @if (scenario(); as activeScenario) {
+    @if (schemaLoadResult(); as result) {
+      @switch (result.status) {
+        @case ('success') {
+          <p-card styleClass="form-host-card shadow-lg border border-sage/25">
+            <ng-template #header>
+              <div class="form-host-header border-b border-sage/15 bg-cream px-6 py-6 sm:px-8">
+                <p class="text-xs font-semibold uppercase tracking-[0.18em] text-sage-dark">Form Host</p>
+                <h1 class="mt-2 text-2xl font-bold text-charcoal sm:text-3xl">{{ result.schema.title }}</h1>
+                @if (result.schema.description) {
+                  <p class="mt-2 max-w-2xl text-sm leading-relaxed text-charcoal/70">
+                    {{ result.schema.description }}
+                  </p>
+                }
+              </div>
+            </ng-template>
+
+            <div class="space-y-8 px-1 py-2 sm:px-2">
+              <p-message severity="success" styleClass="w-full form-host-message">
+                Form schema loaded successfully for scenario
+                <span class="font-semibold">{{ activeScenario.id }}</span>.
+              </p-message>
+
+              <section class="form-host-section">
+                <h2 class="text-sm font-semibold uppercase tracking-[0.16em] text-sage-dark">
+                  Schema Summary
+                </h2>
+                <dl class="mt-5 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
+                  <div>
+                    <dt class="text-xs font-semibold uppercase tracking-wide text-charcoal/55">Form ID</dt>
+                    <dd class="mt-1 text-sm font-semibold text-charcoal">{{ result.schema.id }}</dd>
+                  </div>
+                  <div>
+                    <dt class="text-xs font-semibold uppercase tracking-wide text-charcoal/55">Title</dt>
+                    <dd class="mt-1 text-sm font-semibold text-charcoal">{{ result.schema.title }}</dd>
+                  </div>
+                  <div class="sm:col-span-2">
+                    <dt class="text-xs font-semibold uppercase tracking-wide text-charcoal/55">Description</dt>
+                    <dd class="mt-1 text-sm leading-relaxed text-charcoal/80">
+                      {{ result.schema.description || '—' }}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt class="text-xs font-semibold uppercase tracking-wide text-charcoal/55">Number of Fields</dt>
+                    <dd class="mt-1 text-sm font-semibold text-charcoal">
+                      {{ result.schema.fields.length }}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt class="text-xs font-semibold uppercase tracking-wide text-charcoal/55">
+                      Submit Button Label
+                    </dt>
+                    <dd class="mt-1 text-sm font-semibold text-charcoal">
+                      {{ submitLabel(result.schema) }}
+                    </dd>
+                  </div>
+                </dl>
+              </section>
+
+              <section class="form-host-section mt-10">
+                @for (renderKey of [scenarioId()]; track renderKey) {
+                  <div class="space-y-6">
+                    @if (isSupportCenter()) {
+                      <app-voice-assist-panel
+                        [schema]="result.schema"
+                        [currentFormValues]="currentFormValues()"
+                        (valuesReady)="onVoiceAssistPatch($event)"
+                      />
+                    }
+
+                    <app-smart-assist-panel
+                      [schema]="result.schema"
+                      [currentFormValues]="currentFormValues()"
+                      (valuesReady)="onSmartAssistPatch($event)"
+                    />
+
+                    <app-dynamic-form-renderer
+                      #formRenderer
+                      [schema]="result.schema"
+                      (formValuesChanged)="onFormValuesChanged($event)"
+                      (formSubmitted)="onFormSubmitted($event)"
+                    />
+
+                    @if (lastSavedApplicationId) {
+                      <p-message
+                        severity="success"
+                        styleClass="w-full"
+                        [text]="'Application saved as ' + lastSavedApplicationId + '. View it anytime from My Workspace.'"
+                      />
+                      <div class="mt-3">
+                        <p-button
+                          label="View application"
+                          icon="pi pi-eye"
+                          styleClass="formflow-btn"
+                          [routerLink]="['/applications', lastSavedApplicationId]"
+                        />
+                      </div>
+                    }
+                  </div>
+                }
+              </section>
+            </div>
+          </p-card>
+        }
+        @case ('invalid') {
+          <p-card styleClass="form-host-card shadow-lg border border-sage/25">
+            <ng-template #header>
+              <div class="form-host-header border-b border-sage/15 bg-cream px-6 py-5">
+                <h1 class="text-2xl font-bold text-charcoal">{{ activeScenario.title }}</h1>
+              </div>
+            </ng-template>
+            <p-message severity="error" styleClass="w-full">
+              {{ result.message }}
+            </p-message>
+            <p class="mt-4 text-sm text-charcoal/70">
+              The form cannot be rendered until the schema configuration is corrected.
+            </p>
+          </p-card>
+        }
+        @case ('not-found') {
+          <p-card styleClass="form-host-card shadow-lg border border-sage/25">
+            <p-message severity="warn" styleClass="w-full">
+              {{ result.message }}
+            </p-message>
+            <div class="mt-4">
+              <p-button label="Return to Dashboard" icon="pi pi-home" styleClass="formflow-btn" routerLink="/dashboard" />
+            </div>
+          </p-card>
+        }
+      }
+    }
+  } @else {
+    <p-card styleClass="form-host-card shadow-lg border border-sage/25">
+      <p-message severity="warn" styleClass="w-full">
+        The requested form scenario "{{ scenarioId() }}" was not found in the scenario catalog.
+      </p-message>
+      <div class="mt-4">
+        <p-button label="Return to Dashboard" icon="pi pi-home" styleClass="formflow-btn" routerLink="/dashboard" />
+      </div>
+    </p-card>
+  }
+</section>

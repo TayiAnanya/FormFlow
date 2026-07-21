@@ -1,0 +1,68 @@
+<section class="formflow-renderer formflow-animate-in">
+  <div class="formflow-renderer-header">
+    <h2 class="formflow-renderer-kicker">Dynamic Form</h2>
+    <p class="formflow-renderer-lead">
+      Rendered from configuration — labels, order, and controls are schema-driven.
+    </p>
+  </div>
+
+  <form [formGroup]="form" class="formflow-form mt-8" novalidate (ngSubmit)="onSubmit()">
+    @for (field of schema.fields; track field.key; let index = $index) {
+      @if (sectionHeading(field, index); as heading) {
+        <h3 class="formflow-section-title">{{ heading }}</h3>
+      }
+      <app-schema-field-host [field]="field" [formGroup]="form" [submitted]="submitted" />
+    }
+
+    @if (!readOnly) {
+      <div class="formflow-submit-row">
+        <p-button type="submit" [label]="submitLabel()" styleClass="formflow-btn formflow-submit-btn" />
+      </div>
+    }
+  </form>
+
+  @if (submission) {
+    <div class="formflow-submission mt-10 pt-8">
+      <p class="formflow-submission-success" role="status">
+        <i class="pi pi-check-circle formflow-submission-success-icon" aria-hidden="true"></i>
+        <span>Form submitted successfully. Captured values are shown below.</span>
+      </p>
+
+      <div class="formflow-submission-panel mt-5 overflow-hidden rounded-xl border border-terracotta/25 shadow-lg">
+        <div class="formflow-submission-panel-header">
+          <div class="flex items-center gap-2">
+            <i class="pi pi-code text-sm text-terracotta" aria-hidden="true"></i>
+            <span>Submission Output</span>
+          </div>
+          <button
+            type="button"
+            class="formflow-copy-btn"
+            (click)="copySubmissionJson()"
+            [attr.aria-label]="copyFeedback ? 'JSON copied' : 'Copy JSON to clipboard'"
+          >
+            <i [class]="copyFeedback ? 'pi pi-check' : 'pi pi-copy'" aria-hidden="true"></i>
+            <span>{{ copyFeedback ? 'Copied' : 'Copy JSON' }}</span>
+          </button>
+        </div>
+        <pre
+          class="formflow-submission-json"
+          aria-label="Submission JSON output"
+        >{{ formattedSubmission() }}</pre>
+      </div>
+
+      <div class="formflow-submission-actions mt-5">
+        <button
+          type="button"
+          class="formflow-pdf-btn"
+          (click)="downloadSubmissionPdf()"
+          aria-label="Download submission as PDF"
+        >
+          <span class="formflow-pdf-btn-icon" aria-hidden="true">
+            <i class="pi pi-file-pdf"></i>
+          </span>
+          <span>Download PDF</span>
+        </button>
+      </div>
+    </div>
+  }
+</section>

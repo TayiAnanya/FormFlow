@@ -27,7 +27,10 @@ export class LocalStorageDataSetupAdapter implements DataSetupAdapter {
     try {
       await page.evaluate(clear, ALL_KEYS);
     } catch {
-      await page.goto('/');
+      // about:blank denies localStorage (SecurityError). Open the app origin first.
+      // waitUntil:'load' hangs when Google Fonts (index.html) are slow/unreachable;
+      // domcontentloaded is enough for a stable localStorage origin.
+      await page.goto('/', { waitUntil: 'domcontentloaded' });
       await page.evaluate(clear, ALL_KEYS);
     }
   }
@@ -78,7 +81,7 @@ export class LocalStorageDataSetupAdapter implements DataSetupAdapter {
     try {
       await page.evaluate(() => true);
     } catch {
-      await page.goto('/');
+      await page.goto('/', { waitUntil: 'domcontentloaded' });
     }
 
     await this.seedUser(page, user);
@@ -145,7 +148,7 @@ export class LocalStorageDataSetupAdapter implements DataSetupAdapter {
         { storageKey: key, storageValue: value },
       );
     } catch {
-      await page.goto('/');
+      await page.goto('/', { waitUntil: 'domcontentloaded' });
       await page.evaluate(
         ({ storageKey, storageValue }) => {
           window.localStorage.setItem(storageKey, storageValue);
